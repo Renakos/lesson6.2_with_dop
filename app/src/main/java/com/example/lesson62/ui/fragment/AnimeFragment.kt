@@ -5,11 +5,10 @@ import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -18,22 +17,20 @@ import androidx.paging.cachedIn
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.lesson62.R
 import com.example.lesson62.data.model.Data
-import com.example.lesson62.data.remote.paging.AnimePagingSource
-import com.example.lesson62.databinding.FragmentRecyclerViewBinding
-import com.example.lesson62.ui.adapter.AnimeAdapter
+import com.example.lesson62.data.remoteanime.paging.AnimePagingSource
+import com.example.lesson62.databinding.FragmentAnimeBinding
+import com.example.lesson62.ui.adapter.AdapterAnime
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+class AnimeFragment : Fragment(R.layout.fragment_anime) {
 
-class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
-    private val adapter = AnimeAdapter()
-    private val binding by viewBinding(FragmentRecyclerViewBinding::bind)
-    private val viewModel: AnimeViewModel by activityViewModels {
-        AnimeViewModelFactory()
-    }
+    private val binding by viewBinding(FragmentAnimeBinding::bind)
+    private val adapter = AdapterAnime()
+    private val viewModel: ViewModelAnime by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,9 +39,6 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
         observeViewModel()
         setupRefresh()
         setupSubscribe()
-        binding.btnNext.setOnClickListener {
-            findNavController().navigate(R.id.action_recyclerViewFragment_to_animeFragment)
-        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             delay(2000)
@@ -118,5 +112,6 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
     companion object {
         private const val PAGE_SIZE = 20
     }
+
 
 }

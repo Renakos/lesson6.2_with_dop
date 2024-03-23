@@ -9,5 +9,19 @@
         android:id="@+id/recyclerViewFragment"
         android:name="com.example.lesson62.ui.fragment.RecyclerViewFragment"
         android:label="fragment_recycler_view"
-        tools:layout="@layout/fragment_recycler_view" />
+        tools:layout="@layout/fragment_recycler_view">
+        <action
+            android:id="@+id/action_recyclerViewFragment_to_animeFragment"
+            app:destination="@id/animeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animeFragment"
+        android:name="com.example.lesson62.ui.fragment.AnimeFragment"
+        android:label="AnimeFragment"
+        tools:layout="@layout/fragment_anime" />
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.lesson62.ui.fragment.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" />
 </navigation>
