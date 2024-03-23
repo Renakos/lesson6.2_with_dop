@@ -42,9 +42,6 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
         observeViewModel()
         setupRefresh()
         setupSubscribe()
-        binding.btnNext.setOnClickListener {
-            findNavController().navigate(R.id.action_recyclerViewFragment_to_animeFragment)
-        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             delay(2000)
