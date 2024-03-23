@@ -27,6 +27,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tabGravity="center"
         app:tabIndicatorColor="#000000"
+        app:tabTextColor="#646464"
+        app:tabSelectedTextColor="#FF5722"
         app:tabIndicatorHeight="0dp"
         app:tabMode="fixed" />
 
